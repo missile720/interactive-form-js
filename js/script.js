@@ -52,3 +52,28 @@ function selectDesignChange(event){
         }
     }
 }
+
+//add event listener for the fieldset element
+document.getElementById('activities').addEventListener('change', selectActivity);
+
+//global variable to store cost
+let cost = 0;
+
+function selectActivity(event){
+    //grabs the cost of the targeted event
+    let dataCost = parseInt(event.target.getAttribute("data-cost"));
+
+    //checks if the event was a check or uncheck
+    if(event.target.checked){
+        //adds the value of the check to the global variable
+        cost += dataCost;
+        //updates the html with the new total cost
+        document.getElementById('activities-cost').innerHTML = `Total: $${cost}`;
+    }
+    else{
+        //subtracts the value of the check to the global variable
+        cost -= dataCost;
+        //updates the html with the new total cost
+        document.getElementById('activities-cost').innerHTML = `Total: $${cost}`;
+    }
+}
