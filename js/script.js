@@ -77,3 +77,46 @@ function selectActivity(event){
         document.getElementById('activities-cost').innerHTML = `Total: $${cost}`;
     }
 }
+
+//selects the credit card option by default
+document.getElementById('payment').value = "credit-card";
+
+//hide the other payment options by default
+document.getElementById('paypal').style.display = "none";
+document.getElementById('bitcoin').style.display = "none";
+
+//add event listener for the select payment options
+document.getElementById('payment').addEventListener('change', selectPayment);
+
+//function runs when user changes payment method
+function selectPayment(event){
+    //grabs the index of the selected option
+    let i = event.target.selectedIndex;
+    //grabs the value of the index
+    let value = event.target.options[i].value;
+
+    if(value === "credit-card"){
+        //show credit payment info
+        document.getElementById('credit-card').style.display = "inherit";
+
+        //hide the other payment options by default
+        document.getElementById('paypal').style.display = "none";
+        document.getElementById('bitcoin').style.display = "none";
+    }
+    else if(value === "paypal"){
+        //show paypal payment info
+        document.getElementById('paypal').style.display = "inherit";
+
+        //hide the other payment options by default
+        document.getElementById('credit-card').style.display = "none";
+        document.getElementById('bitcoin').style.display = "none";
+    }
+    else{
+        //show bitcoin payment info
+        document.getElementById('bitcoin').style.display = "inherit";
+
+        //hide the other payment options by default
+        document.getElementById('paypal').style.display = "none";
+        document.getElementById('credit-card').style.display = "none";
+    }
+}
