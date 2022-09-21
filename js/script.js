@@ -129,8 +129,6 @@ function formCheck(event){
     //checks to see if name field is empty
     if(document.getElementById('name').value === ''){
         //cancels the event form submitting
-        //add to pr
-        //https://www.w3schools.com/jsref/event_preventdefault.asp
         event.preventDefault();
     }
 
@@ -210,3 +208,27 @@ function formCheck(event){
         }
     }
 }
+
+//selects all input elements
+let allInputs = document.getElementsByTagName('input');
+
+//loop through the input elements
+for(let i = 0; i < allInputs.length; i++){
+    //filter for input of type checkbox
+    if(allInputs[i].type === 'checkbox'){
+        //add event listener for focus and blur
+        allInputs[i].addEventListener('focus', focusActivity);
+        allInputs[i].addEventListener('blur', blurActivity);
+    }
+}
+
+//function that adds focus class to parent of target element
+function focusActivity(event){
+    event.target.parentElement.classList.add('focus');
+}
+
+//function that removes focus class to parent of target element
+function blurActivity(event){
+    event.target.parentElement.classList.remove('focus');
+}
+
