@@ -120,3 +120,93 @@ function selectPayment(event){
         document.getElementById('credit-card').style.display = "none";
     }
 }
+
+//selects the form element and adds the event listener for submit
+document.querySelector('form').addEventListener('submit', formCheck);
+
+//function that runs when form is submitted
+function formCheck(event){
+    //checks to see if name field is empty
+    if(document.getElementById('name').value === ''){
+        //cancels the event form submitting
+        //add to pr
+        //https://www.w3schools.com/jsref/event_preventdefault.asp
+        event.preventDefault();
+    }
+
+    //check to see if email is valid
+    let emailAddress = document.getElementById("email").value;
+    //regex for email
+    let emailReg = /^\S+@\S+\.com$/;
+
+    //checks for valid card number
+    if(!emailReg.test(emailAddress)){
+        //cancels the event form submitting
+        event.preventDefault();
+    }
+
+
+    //selects all input elements
+    let allInputs = document.getElementsByTagName('input');
+    let inputChecked = 0;
+
+    //loop through the input elements
+    for(let i = 0; i < allInputs.length; i++){
+        //filter for input of type checkbox
+        if(allInputs[i].type === 'checkbox'){
+            //check to see if input is checked
+            if(allInputs[i].checked){
+                //add to counter
+                inputChecked++;
+            }
+        }
+    }
+
+    //checks to see if at least one activity selected
+    if(inputChecked === 0){
+        //cancels the event form submitting
+        event.preventDefault();
+    }
+    
+    //selects the index of the selected payment
+    let index = document.getElementById('payment').selectedIndex;
+
+    //grabs the value of the selected payment
+    let value = document.getElementById('payment').options[index].value;
+
+    //checks if payment is credit card
+    if(value === "credit-card"){
+        //grabs the value of the input field 
+        let cardNumber = document.getElementById("cc-num").value;
+        //regex for card length and numbers only
+        let cardNumberReg = /^[0-9]{13,16}$/;
+
+        //checks for valid card number
+        if(!cardNumberReg.test(cardNumber)){
+            //cancels the event form submitting
+            event.preventDefault();
+        }
+        
+        //grabs the value of the input field
+        let zipcode = document.getElementById("zip").value;
+        //regex for zipcode length and numbers only
+        let zipCodeReg = /^[0-9]{5}$/;
+
+        //checks for valid zip code
+        if(!zipCodeReg.test(zipcode)){
+            //cancels the event form submitting
+            event.preventDefault();
+        }
+        
+        //grabs the value of the input field
+        let cvv = document.getElementById("cvv").value;
+        //regex for cvv length and numbers only
+        let cvvReg = /^[0-9]{3}$/;
+
+        //checks for valid CVV
+        if(!cvvReg.test(cvv)){
+            //cancels the event form submitting
+            event.preventDefault();
+        }
+    }
+}
