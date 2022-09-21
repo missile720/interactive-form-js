@@ -130,6 +130,17 @@ function formCheck(event){
     if(document.getElementById('name').value === ''){
         //cancels the event form submitting
         event.preventDefault();
+
+        //makes the form errors visible to the user
+        document.getElementById('name').parentElement.classList.add('not-valid');
+        document.getElementById('name').parentElement.classList.remove('valid');
+        document.getElementById('name').parentElement.lastElementChild.style.display = "inherit";
+    }
+    else{
+        //removes form error
+        document.getElementById('name').parentElement.classList.remove('not-valid');
+        document.getElementById('name').parentElement.classList.add('valid');
+        document.getElementById('name').parentElement.lastElementChild.style.display = "none";
     }
 
     //check to see if email is valid
@@ -141,6 +152,17 @@ function formCheck(event){
     if(!emailReg.test(emailAddress)){
         //cancels the event form submitting
         event.preventDefault();
+
+        //makes the form errors visible to the user
+        document.getElementById('email').parentElement.classList.add('not-valid');
+        document.getElementById('email').parentElement.classList.remove('valid');
+        document.getElementById('email').parentElement.lastElementChild.style.display = "inherit";
+    }
+    else{
+        //removes form error
+        document.getElementById('email').parentElement.classList.remove('not-valid');
+        document.getElementById('email').parentElement.classList.add('valid');
+        document.getElementById('email').parentElement.lastElementChild.style.display = "none";
     }
 
 
@@ -164,6 +186,17 @@ function formCheck(event){
     if(inputChecked === 0){
         //cancels the event form submitting
         event.preventDefault();
+
+        //makes the form errors visible to the user
+        document.getElementById('activities').classList.add('not-valid');
+        document.getElementById('activities').classList.remove('valid');
+        document.getElementById('activities').lastElementChild.style.display = "inherit";
+    }
+    else{
+        //removes form error
+        document.getElementById('activities').classList.remove('not-valid');
+        document.getElementById('activities').classList.add('valid');
+        document.getElementById('activities').lastElementChild.style.display = "none";
     }
     
     //selects the index of the selected payment
@@ -183,6 +216,17 @@ function formCheck(event){
         if(!cardNumberReg.test(cardNumber)){
             //cancels the event form submitting
             event.preventDefault();
+
+            //makes the form errors visible to the user
+            document.getElementById('cc-num').parentElement.classList.add('not-valid');
+            document.getElementById('cc-num').parentElement.classList.remove('valid');
+            document.getElementById('cc-num').parentElement.lastElementChild.style.display = "inherit";
+        }
+        else{
+            //removes form error
+            document.getElementById('cc-num').parentElement.classList.remove('not-valid');
+            document.getElementById('cc-num').parentElement.classList.add('valid');
+            document.getElementById('cc-num').parentElement.lastElementChild.style.display = "none";
         }
         
         //grabs the value of the input field
@@ -194,6 +238,17 @@ function formCheck(event){
         if(!zipCodeReg.test(zipcode)){
             //cancels the event form submitting
             event.preventDefault();
+
+            //makes the form errors visible to the user
+            document.getElementById('zip').parentElement.classList.add('not-valid');
+            document.getElementById('zip').parentElement.classList.remove('valid');
+            document.getElementById('zip').parentElement.lastElementChild.style.display = "inherit";
+        }
+        else{
+            //removes form error
+            document.getElementById('zip').parentElement.classList.remove('not-valid');
+            document.getElementById('zip').parentElement.classList.add('valid');
+            document.getElementById('zip').parentElement.lastElementChild.style.display = "none";
         }
         
         //grabs the value of the input field
@@ -205,6 +260,17 @@ function formCheck(event){
         if(!cvvReg.test(cvv)){
             //cancels the event form submitting
             event.preventDefault();
+
+            //makes the form errors visible to the user
+            document.getElementById('cvv').parentElement.classList.add('not-valid');
+            document.getElementById('cvv').parentElement.classList.remove('valid');
+            document.getElementById('cvv').parentElement.lastElementChild.style.display = "inherit";
+        }
+        else{
+            //removes form error
+            document.getElementById('cvv').parentElement.classList.remove('not-valid');
+            document.getElementById('cvv').parentElement.classList.add('valid');
+            document.getElementById('cvv').parentElement.lastElementChild.style.display = "none";
         }
     }
 }
