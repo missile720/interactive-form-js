@@ -69,6 +69,12 @@ function selectActivity(event){
         cost += dataCost;
         //updates the html with the new total cost
         document.getElementById('activities-cost').innerHTML = `Total: $${cost}`;
+        //removes form error if present
+        if(document.getElementById('activities').classList.contains('not-valid')){
+            document.getElementById('activities').classList.remove('not-valid');
+            document.getElementById('activities').classList.add('valid');
+            document.getElementById('activities').lastElementChild.style.display = "none";
+        }
     }
     else{
         //subtracts the value of the check to the global variable
@@ -192,12 +198,6 @@ function formCheck(event){
         document.getElementById('activities').classList.remove('valid');
         document.getElementById('activities').lastElementChild.style.display = "inherit";
     }
-    else{
-        //removes form error
-        document.getElementById('activities').classList.remove('not-valid');
-        document.getElementById('activities').classList.add('valid');
-        document.getElementById('activities').lastElementChild.style.display = "none";
-    }
     
     //selects the index of the selected payment
     let index = document.getElementById('payment').selectedIndex;
@@ -222,12 +222,6 @@ function formCheck(event){
             document.getElementById('cc-num').parentElement.classList.remove('valid');
             document.getElementById('cc-num').parentElement.lastElementChild.style.display = "inherit";
         }
-        else{
-            //removes form error
-            document.getElementById('cc-num').parentElement.classList.remove('not-valid');
-            document.getElementById('cc-num').parentElement.classList.add('valid');
-            document.getElementById('cc-num').parentElement.lastElementChild.style.display = "none";
-        }
         
         //grabs the value of the input field
         let zipcode = document.getElementById("zip").value;
@@ -244,12 +238,6 @@ function formCheck(event){
             document.getElementById('zip').parentElement.classList.remove('valid');
             document.getElementById('zip').parentElement.lastElementChild.style.display = "inherit";
         }
-        else{
-            //removes form error
-            document.getElementById('zip').parentElement.classList.remove('not-valid');
-            document.getElementById('zip').parentElement.classList.add('valid');
-            document.getElementById('zip').parentElement.lastElementChild.style.display = "none";
-        }
         
         //grabs the value of the input field
         let cvv = document.getElementById("cvv").value;
@@ -265,12 +253,6 @@ function formCheck(event){
             document.getElementById('cvv').parentElement.classList.add('not-valid');
             document.getElementById('cvv').parentElement.classList.remove('valid');
             document.getElementById('cvv').parentElement.lastElementChild.style.display = "inherit";
-        }
-        else{
-            //removes form error
-            document.getElementById('cvv').parentElement.classList.remove('not-valid');
-            document.getElementById('cvv').parentElement.classList.add('valid');
-            document.getElementById('cvv').parentElement.lastElementChild.style.display = "none";
         }
     }
 }
@@ -298,3 +280,71 @@ function blurActivity(event){
     event.target.parentElement.classList.remove('focus');
 }
 
+//checks for valid cvv
+document.getElementById("cvv").addEventListener('input', cvvInput);
+
+function cvvInput(event){
+    let cvv = event.target.value;
+    let cvvReg = /^[0-9]{3}$/;
+
+    if(cvvReg.test(cvv)){
+        document.getElementById('cvv').parentElement.classList.remove('not-valid');
+        document.getElementById('cvv').parentElement.classList.add('valid');
+        document.getElementById('cvv').parentElement.lastElementChild.style.display = "none";
+    }
+}
+
+//checks for valid zip
+document.getElementById("zip").addEventListener('input', zipInput);
+
+function zipInput(event){
+    let zip = event.target.value;
+    let zipCodeReg = /^[0-9]{5}$/;
+
+    if(zipCodeReg.test(zip)){
+        document.getElementById('zip').parentElement.classList.remove('not-valid');
+        document.getElementById('zip').parentElement.classList.add('valid');
+        document.getElementById('zip').parentElement.lastElementChild.style.display = "none";
+    }
+}
+
+//checks for valid card number
+document.getElementById("cc-num").addEventListener('input', cardInput);
+
+function cardInput(event){
+    let card = event.target.value;
+    let cardNumberReg = /^[0-9]{13,16}$/;
+
+    if(cardNumberReg.test(card)){
+        document.getElementById('cc-num').parentElement.classList.remove('not-valid');
+        document.getElementById('cc-num').parentElement.classList.add('valid');
+        document.getElementById('cc-num').parentElement.lastElementChild.style.display = "none";
+    }
+}
+
+//checks for valid email
+document.getElementById("email").addEventListener('input', emailInput);
+
+function emailInput(event){
+    let email = event.target.value;
+    let emailReg = /^\S+@\S+\.com$/;
+
+    if(emailReg.test(email)){
+        document.getElementById('email').parentElement.classList.remove('not-valid');
+        document.getElementById('email').parentElement.classList.add('valid');
+        document.getElementById('email').parentElement.lastElementChild.style.display = "none";
+    }
+}
+
+//checks for valid name
+document.getElementById("name").addEventListener('input', nameInput);
+
+function nameInput(event){
+    let name = event.target.value;
+
+    if(name !== ''){
+        document.getElementById('name').parentElement.classList.remove('not-valid');
+        document.getElementById('name').parentElement.classList.add('valid');
+        document.getElementById('name').parentElement.lastElementChild.style.display = "none";
+    }
+}
